@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Bill Management System</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<h1>Bill Management System</h1>
+		<hr>
+		<h2>Save Bill</h2>
+
+		<form action="#" th:action="@{/Bill/saveBill}" th:object="${bill}"
+			method="POST">
+			<input type="text" th:field="*{name}"
+				placeholder="Bill Name" class="form-control mb-4 col-4">
+				<input type="text" th:field="*{uuid}"
+				placeholder="Bill Name" class="form-control mb-4 col-4">
+				<input type="text" th:field="*{email}"
+				placeholder="Bill Name" class="form-control mb-4 col-4">
+				<input type="text" th:field="*{contactnumber}"
+				placeholder="Bill Name" class="form-control mb-4 col-4">
+				<input type="text" th:field="*{paymentmethod}"
+				placeholder="Bill Name" class="form-control mb-4 col-4">
+				<input type="text" th:field="*{productdetails}"
+				placeholder="Bill Name" class="form-control mb-4 col-4">
+				<input type="datetime" th:field="*{createdby}"
+				placeholder="Bill date" class="form-control mb-4 col-4">
+				<input type="number" th:field="*{total}"
+				placeholder="Bill total" class="form-control mb-4 col-4">
+				
+				<button type="submit" class="btn btn-info col-2"> Save Bill</button>
+		</form>
+		
+		<hr>
+		
+		<a th:href = "@{/Bill/}"> Back to Bill List</a>
+	</div>
+</body>
+</html>
