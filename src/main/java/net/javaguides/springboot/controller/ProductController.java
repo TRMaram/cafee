@@ -3,6 +3,7 @@ package net.javaguides.springboot.controller;
 import java.util.List;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -13,8 +14,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
+
+import net.javaguides.springboot.model.Category;
 import net.javaguides.springboot.model.Employee;
 import net.javaguides.springboot.model.Product;
+import net.javaguides.springboot.service.CategoryService;
 import net.javaguides.springboot.service.EmployeeService;
 import net.javaguides.springboot.service.ProductService;
 
@@ -25,6 +30,8 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
+	@Autowired
+	private CategoryService servicecategory;
 	// display list of produits
 	@GetMapping("/product")
 	public String ProuctHomePage(Model model) {
@@ -36,13 +43,21 @@ public class ProductController {
 		// create model attribute to bind form data
 		Product product = new Product();
 		model.addAttribute("product", product);
+		List<Category> categories=servicecategory.getAllCategories();
+		model.addAttribute("listcategory",categories);
 		return "new_product";
 	}
 	
 	@PostMapping("/saveProduct")
-	public String saveProduct(@ModelAttribute("product") Product product) {
+	public String saveProduct(
+	@ModelAttribute("product") Product product,
+	@RequestParam(value="category")int categoryId, Model model) {
+	Category categ=servicecategory.getCategoryById(categoryId);
+	product.setCategory(categ);
+	
 		// save produit to database
 		productService.saveProduct(product);
+		
 		return "redirect:/product";
 	}
 	
@@ -54,6 +69,8 @@ public class ProductController {
 		
 		// set prouit as a model attribute to pre-populate the form
 		model.addAttribute("product", product);
+		List<Category> categories=servicecategory.getAllCategories();
+		model.addAttribute("listcategory",categories);
 		return "update_product";
 	}
 	

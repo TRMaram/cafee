@@ -36,6 +36,18 @@
 					<a th:href="@{'/pages/' + ${currentPage} + '?sortField=status&sortDir=' + ${reverseSortDir}}">
 							Product status</a>
 					</th>
+					
+					
+					<th>
+					<a th:href="@{'/pages/' + ${currentPage} + '?sortField=Category&sortDir=' + ${reverseSortDir}}">
+							Product Category</a>
+					</th>
+					
+					<th>
+					<a th:href="@{'/pages/' + ${currentPage} + '?sortField=Category&sortDir=' + ${reverseSortDir}}">
+							Quantity</a>
+					</th>
+					
 					<th> Actions </th>
 				</tr>
 			</thead>
@@ -45,6 +57,8 @@
 					<td th:text="${product.Description}"></td>
 					<td th:text="${product.Prix}"></td>
 					<td th:text="${product.status}"></td>
+					<td th:text="${product.category.name}"></td>
+					<td th:text="${product.quantite}"></td>
 					<td> <a th:href="@{/showFormUpdate/{id}(id=${product.id})}" class="btn btn-primary">Update</a>
 					    <a th:href="@{/deleteProduct/{id}(id=${product.id})}" class="btn btn-danger">Delete</a>
 					</td>

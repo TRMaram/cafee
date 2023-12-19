@@ -1,5 +1,10 @@
 package net.javaguides.springboot.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+
+
 import jakarta.persistence.*;
 
 @Entity
@@ -15,10 +20,12 @@ public class Product {
 	
 	@Column(name = "description")
 	private String Description;
-	/*
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "category_fk", nullable = false)
-	private Category category;*/
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "category_id", insertable = true, updatable =
+	true)
+	@Fetch(FetchMode.JOIN)
+	private Category category;
 	
 	@Column(name = "prix")
 	private String Prix;
@@ -26,6 +33,9 @@ public class Product {
 	@Column(name = "status")
 	private String status;
 
+	@Column(name = "quantite")
+	private Integer quantite;
+	
 	public long getId() {
 		return id;
 	}
@@ -51,14 +61,7 @@ public class Product {
 	public void setDescription(String description) {
 		Description = description;
 	}
-/*
-	public Category getCategory() {
-		return category;
-	}
 
-	public void setCategory(Category category) {
-		this.category = category;
-	}*/
 
 	public String getPrix() {
 		return Prix;
@@ -75,6 +78,26 @@ public class Product {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public Integer getQuantite() {
+		return quantite;
+	}
+
+	public void setQuantite(Integer quantite) {
+		this.quantite = quantite;
+	}
+
+	
+
+	
 	
 	
 	

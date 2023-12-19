@@ -28,6 +28,30 @@
 				<input type="text" th:field="*{status}"
 				placeholder="Product status" class="form-control mb-4 col-4">
 				
+				
+				
+				 <!-- Champ pour la quantité -->
+    <input type="number" th:field="*{quantite}" placeholder="Product Quantity" class="form-control mb-4 col-4">
+				
+              <div class="row">
+<div class="col-2">
+<label for="category"><b>Category</b></label>
+</div>
+<div class="col-4">
+	<select name="category" id="category">
+		<option value="">--Please choose an option--</option>
+		<option th:each="ob:${listcategory}"
+		th:text="${ob.id}+''+${ob.name}" th:value="${ob.id}"></option>
+			
+	</select>
+
+
+
+</div>
+</div> <br/> 
+				
+				
+				
 				<button type="submit" class="btn btn-info col-2"> Save product</button>
 		</form>
 		
