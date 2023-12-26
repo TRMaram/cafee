@@ -10,16 +10,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import net.javaguides.springboot.model.Employee;
 import net.javaguides.springboot.service.EmployeeService;
 
 @Controller
+@RequestMapping(path = "/Employees")
 public class EmployeeController {
 
 	@Autowired
 	private EmployeeService employeeService;
+	
 	
 	// display list of employees
 	@GetMapping("/")
@@ -39,7 +42,7 @@ public class EmployeeController {
 	public String saveEmployee(@ModelAttribute("employee") Employee employee) {
 		// save employee to database
 		employeeService.saveEmployee(employee);
-		return "redirect:/";
+		return "redirect:/Employees/";
 	}
 	
 	@GetMapping("/showFormForUpdate/{id}")
@@ -58,7 +61,7 @@ public class EmployeeController {
 		
 		// call delete employee method 
 		this.employeeService.deleteEmployeeById(id);
-		return "redirect:/";
+		return "redirect:/Employees/";
 	}
 	
 	

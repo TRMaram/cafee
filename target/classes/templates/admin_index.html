@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <title>cofee shop</title>
+<style>
+    body{
+      background-image: url("10.jpg");
+      background-size: auto ;
+      background-repeat: no-repeat;
+    }
+    h1{
+        color: black;
+        margin-top:150px;
+        margin-left: 40%;
+       font-size: 300%;
+       margin-bottom: 150px;
+      
+    }
+  a{
+    margin-top: 10%;
+    margin: 2000;
+    margin-left:15% ;
+    padding: 1%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    
+            font-size:xxx-large;
+            color: rgb(18, 24, 24);
+            background-color: aliceblue;
+            position: relative;
+            border-radius: 30px;
+  }
+</style>
+</head>
+<body>
+    <div style="padding: 3%  ">
+    <a th:href = "@{/}" style="margin-left: 43%;margin-bottom: 3%;">Home</a></div>
+
+<div style="padding: 3%;"><a th:href = "@{/Employees}">Employees</a>
+   <a th:href = "@{/Products}" style="margin-left: 30%;">Products</a></div></div>
+    <div style="padding: 3%;"><a th:href = "@{/Categories}">Categories</a> <a th:href = "@{/Bill}" style="margin-left: 30%;">Orders</a></div>
+    
+
+</body>
+</html>

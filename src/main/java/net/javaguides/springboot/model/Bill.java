@@ -1,6 +1,7 @@
 package net.javaguides.springboot.model;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.*;
 
@@ -15,7 +16,6 @@ public class Bill implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
@@ -23,26 +23,38 @@ public class Bill implements Serializable {
 	@Column(name = "uuid")
 	private String uuid;
 
-	@Column(name = "name")
-	private String name;
-
-	@Column(name = "email")
-	private String email;
-
-	@Column(name = "contactnumber")
-	private String contactNumber;
-
+	@Column(name = "product")
+	private String product; 
+	@Column(name="quantity")
+	private int quantity; 
 	@Column(name = "paymentmethod")
 	private String paymentMethod;
 
-	@Column(name = "total")
-	private Integer total;
+	@Column(name = "totalAmount")
+	private Double totalAmount;
 	
-	@Column(name = "productdetails", columnDefinition = "json")
-	private String productDetails;
+	public String getProduct() {
+		return product;
+	}
+
+	public void setProduct(String product) {
+		this.product = product;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 
 	@Column(name = "createdby")
-	private String createdBy;
+	private LocalDateTime createdBy;
+
+	
+	
+    
 
 	public Integer getId() {
 		return id;
@@ -60,29 +72,9 @@ public class Bill implements Serializable {
 		this.uuid = uuid;
 	}
 
-	public String getName() {
-		return name;
-	}
+	
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getContactNumber() {
-		return contactNumber;
-	}
-
-	public void setContactNumber(String contactNumber) {
-		this.contactNumber = contactNumber;
-	}
+	
 
 	public String getPaymentMethod() {
 		return paymentMethod;
@@ -92,28 +84,24 @@ public class Bill implements Serializable {
 		this.paymentMethod = paymentMethod;
 	}
 
-	public Integer getTotal() {
-		return total;
+
+
+	public Double getTotalAmount() {
+		return totalAmount;
 	}
 
-	public void setTotal(Integer total) {
-		this.total = total;
+	public void setTotalAmount(Double totalAmount) {
+		this.totalAmount = totalAmount;
 	}
 
-	public String getProductDetails() {
-		return productDetails;
-	}
 
-	public void setProductDetails(String productDetails) {
-		this.productDetails = productDetails;
-	}
 
-	public String getCreatedBy() {
+	public LocalDateTime getCreatedBy() {
 		return createdBy;
 	}
 
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
+	public void setCreatedBy(LocalDateTime datetime) {
+		this.createdBy = datetime;
 	}
 
 	public static long getSerialversionuid() {

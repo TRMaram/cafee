@@ -1,5 +1,6 @@
 package net.javaguides.springboot.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import net.javaguides.springboot.model.Bill;
+import net.javaguides.springboot.model.BillItem;
 import net.javaguides.springboot.model.Category;
 import net.javaguides.springboot.model.Employee;
 import net.javaguides.springboot.repository.BillRepository;
@@ -24,30 +26,12 @@ public class BillServiceImpl implements BillService {
 	@Autowired
 	private BillRepository billRepository;
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	@Override
 	public List<Bill> getAllBills() {
 		return billRepository.findAll();
 	}
 
-	@Override
-	public Page<Bill> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
-		Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
-			Sort.by(sortField).descending();
-		
-		Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
-		return this.billRepository.findAll(pageable);
-	}
+	
 
 	@Override
 	public void saveBill(Bill bill) {
@@ -76,21 +60,32 @@ public class BillServiceImpl implements BillService {
 		
 	}
 
+	private List<BillItem> billItems = new ArrayList<>();
 	@Override
-	public ResponseEntity<String> generateReport(Map requestMap) {
+	public void addItem(BillItem item) {
 		// TODO Auto-generated method stub
-		return null;
+		billItems.add(item);
 	}
 
 	@Override
-	public ResponseEntity<List<Bill>> getBills() {
+	public double calculateTotal() {
 		// TODO Auto-generated method stub
-		return null;
+		return billItems.stream().mapToDouble(item -> item.getQuantity() * item.getPrice()).sum();
+	    
 	}
 
 	@Override
-	public ResponseEntity<byte[]> getPdf(Map requestMap) {
+	public List<BillItem> getBillItems() {
 		// TODO Auto-generated method stub
-		return null;
+		return billItems;
+	}
+
+	@Override
+	public Page<Bill> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
+		Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
+			Sort.by(sortField).descending();
+		
+		Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
+		return this.billRepository.findAll(pageable);
 	}
 }

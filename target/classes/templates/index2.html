@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <title>cofee shop</title>
+<style>
+    body{
+      background-image: url("10.jpg");
+      background-size: auto ;
+      background-repeat: no-repeat;
+    }
+    h1{
+        color: black;
+        margin-top:150px;
+        margin-left: 40%;
+       font-size: 300%;
+       margin-bottom: 150px;
+      
+    }
+  a{
+    margin-top: 10%;
+    margin: 2000;
+    margin-left:25% ;
+    padding: 1%;
+            font-size:xxx-large;
+            color: rgb(18, 24, 24);
+            background-color: aliceblue;
+            position: relative;
+            border-radius: 30px;
+  }
+</style>
+</head>
+<body>
+    <div style="background-color: aliceblue; border-radius: 30px;margin-left: 150px; margin-right: 150px;"><h1>cofee shop</h1></div>
+   
+    <a th:href = "@{/admin_index}">admin</a>
+    
+    <a th:href="@{/serveur}">serveur</a>
+
+</body>
+</html>

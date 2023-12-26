@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Order Management System</title>
+<title>Product Management System</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -13,48 +13,56 @@
 <body>
 
 	<div class="container my-2">
-	<h1>Order List</h1>
+	<h1>Products List</h1>
 	
-	<a th:href = "@{/Bill/showNewBillForm}" class="btn btn-primary btn-sm mb-3"> Add Order </a>
+	<a th:href = "@{/showNewProductForm}" class="btn btn-primary btn-sm mb-3"> Add Product </a>
 	<a th:href = "@{/admin_index}" class="btn btn-primary btn-sm mb-3"> Home </a>
+	
 		<table border="1" class = "table table-striped table-responsive-md">
 			<thead>
 				<tr>
 					<th>
-						<a th:href="@{'/Bill/page/' + ${currentPage} + '?sortField=uuid&sortDir=' + ${reverseSortDir}}">
-							CaiseUser  </a>
+						<a th:href="@{'/pages/' + ${currentPage} + '?sortField=name&sortDir=' + ${reverseSortDir}}">
+							Product Name</a>
 					</th>
 					<th>
-						<a th:href="@{'/Bill/page/' + ${currentPage} + '?sortField=createdBy&sortDir=' + ${reverseSortDir}}">
-							Date & Time  </a>
+					<a th:href="@{'/pages/' + ${currentPage} + '?sortField=Description&sortDir=' + ${reverseSortDir}}">
+							 Product Description</a>
 					</th>
 					<th>
-						<a th:href="@{'/Bill/page/' + ${currentPage} + '?sortField=product&sortDir=' + ${reverseSortDir}}">
-							Products  </a>
+					<a th:href="@{'/pages/' + ${currentPage} + '?sortField=prix&sortDir=' + ${reverseSortDir}}">
+							Product Price</a>
 					</th>
-				
-					
 					<th>
-						<a th:href="@{'/Bill/page/' + ${currentPage} + '?sortField=totalAmount&sortDir=' + ${reverseSortDir}}">
-							Order  Amount</a>
+					<a th:href="@{'/pages/' + ${currentPage} + '?sortField=status&sortDir=' + ${reverseSortDir}}">
+							Product status</a>
 					</th>
 					
+					
+					<th>
+					<a th:href="@{'/pages/' + ${currentPage} + '?sortField=category&sortDir=' + ${reverseSortDir}}">
+							Product Category</a>
+					</th>
+					
+					<th>
+					<a th:href="@{'/pages/' + ${currentPage} + '?sortField=quantity&sortDir=' + ${reverseSortDir}}">
+							Quantity</a>
+					</th>
 					
 					<th> Actions </th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each= "bill : ${listBills}">
-					<td th:text="${bill.uuid}"></td>
-					<td th:text="${bill.createdBy}"></td>
-					<td th:text="${bill.product}"></td>
-					
-					<td th:text="${bill.totalAmount}"></td>
-					
-					<td> 
-					    <a th:href="@{/Bill/deleteBill/{id}(id=${bill.id})}" class="btn btn-danger">Delete</a>
-					
-					    </td>
+				<tr th:each="product : ${listProducts}">
+					<td th:text="${product.name}"></td>
+					<td th:text="${product.Description}"></td>
+					<td th:text="${product.prix}"></td>
+					<td th:text="${product.status}"></td>
+					<td th:text="${product.category.name}"></td>
+					<td th:text="${product.quantity}"></td>
+					<td> <a th:href="@{/showFormUpdate/{id}(id=${product.id})}" class="btn btn-primary">Update</a>
+					    <a th:href="@{/deleteProduct/{id}(id=${product.id})}" class="btn btn-danger">Delete</a>
+					</td>
 				</tr>
 			</tbody>
 		</table>
