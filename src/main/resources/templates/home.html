@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+	
+	
+	
+
+<head>
+    <title>cofee shop</title>
+<style>
+    body{
+		
+      
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-image: url('bgg.png');
+        
+    }
+    h1{
+        color: black;
+        margin-top:150px;
+        margin-left: 10%;
+       font-size: 300%;
+       margin-bottom: 150px;
+      
+    }
+  a{
+    margin-top: 10%;
+    margin: 2000;
+    margin-left:10% ;
+    padding: 1%;
+            font-size:xxx-large;
+            color: rgb(18, 24, 24);
+            
+            position: relative;
+            
+  }
+</style>
+</head>
+<body >
+    <div><h1>Welcome cofee Time!</h1></div>
+   
+    <a th:href = "@{/admin_index}"><u>Admin</u></a>
+    
+    <a th:href="@{/serveur}"><u>Employee</u></a>
+
+<footer>
+    <!-- Your footer content -->
+    <div>
+     <br>
+     <br>
+     <br>
+     <br>
+     <br>
+     <br>
+     <br>
+      <!-- Add your image inside the footer -->
+      <img style="margin-left: 3%;" src="footer.png" alt="Footer Image" width="200" height="100">
+    </div>
+  </footer>
+
+
+</body>
+</html>

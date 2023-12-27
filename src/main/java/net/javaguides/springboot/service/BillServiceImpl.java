@@ -1,54 +1,29 @@
 package net.javaguides.springboot.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import java.util.Optional;
 
-import org.hibernate.mapping.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import net.javaguides.springboot.model.Bill;
-
+import net.javaguides.springboot.model.BillItem;
 import net.javaguides.springboot.repository.BillRepository;
+
+
 
 
 @Service
 public class BillServiceImpl implements BillService {
-	
-	
+
 	@Autowired
 	private BillRepository billRepository;
-	
-	
-	
-	
-	
-	
-	
-    /*
-	@Override
-	public ResponseEntity<String> generateReport(Map requestMap) {
-		// TODO Auto-generated method stub
-		return null;
-	}*/
-     /*
-	@Override
-	public ResponseEntity<List<Bill>> getBills() {
-		// TODO Auto-generated method stub
-		return null;
-	}*/
-    /*
-	@Override
-	public ResponseEntity<byte[]> getPdf(Map requestMap) {
-		// TODO Auto-generated method stub
-		return null;
-	}*/
 
 	@Override
 	public List<Bill> getAllBills() {
@@ -57,7 +32,8 @@ public class BillServiceImpl implements BillService {
 
 	@Override
 	public void saveBill(Bill bill) {
-		this.billRepository.save(bill);
+		// TODO Auto-generated method stub
+				this.billRepository.save(bill);
 		
 	}
 
@@ -87,8 +63,21 @@ public class BillServiceImpl implements BillService {
 		Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
 		return this.billRepository.findAll(pageable);
 	}
+	private List<BillItem> billItems = new ArrayList<>();
+	@Override
+	public void addItem(BillItem item) {
+		billItems.add(item);
+		
+	}
 
-	
+	@Override
+	public double calculateTotal() {
+		return billItems.stream().mapToDouble(item -> item.getQuantity() * item.getPrice()).sum();
+	}
 
+	@Override
+	public List<BillItem> getBillItems() {
+		return billItems;
+	}
 	
 }

@@ -1,157 +1,82 @@
 package net.javaguides.springboot.model;
 
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Bills")
-public class Bill {
-	
+@Table(name = "bill")
+public class Bill{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue(strategy =  GenerationType.IDENTITY)
-	private int id;
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Integer id;
+
 	@Column(name = "uuid")
-	private String uuid = UUID.randomUUID().toString();
-	
-	@Column(name = "billDate")
-	private Date billDate;
-	
-	/*
-	@Column(name = "list_products")
-    private List<Product> products; // Liste des produits avec leurs quantités
-	*/
-	
+	private String uuid;
+
+	@Column(name = "product")
+	private String product; 
+	@Column(name="quantity")
+	private int quantity; 
+	@Column(name = "paymentmethod")
+	private String paymentMethod;
+
 	@Column(name = "totalAmount")
-    private double totalAmount;
+	private Double totalAmount;
 	
-	
-	@Column(name = "customerName")
-    private String customerName;
-	
-	
-	@Column(name = "tableNumber")
-    private Integer tableNumber;
-	
-	
-	@Column(name = "employeeName")
-    private String employeeName;
-	
-	
-	@Column(name = "paymentMethod")
-    private String paymentMethod;
-	
-	
-	
-	@Column(name = "notes")
-    private String notes;
+	public String getProduct() {
+		return product;
+	}
 
+	public void setProduct(String product) {
+		this.product = product;
+	}
 
+	public int getQuantity() {
+		return quantity;
+	}
 
-	public int getId() {
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	@Column(name = "createdby")
+	private LocalDateTime createdBy;
+
+	
+	
+    
+
+	public Integer getId() {
 		return id;
 	}
 
-
-
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
-
-
 
 	public String getUuid() {
 		return uuid;
 	}
 
-
-
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
 
+	
 
-
-	public Date getBillDate() {
-		return billDate;
-	}
-
-
-
-	public void setBillDate(Date billDate) {
-		this.billDate = billDate;
-	}
-
-
-/*
-	public List<Product> getProducts() {
-		return products;
-	}
-
-
-
-	public void setProducts(List<Product> products) {
-		this.products = products;
-	}*/
-
-
-
-	public double getTotalAmount() {
-		return totalAmount;
-	}
-
-
-
-	public void setTotalAmount(double totalAmount) {
-		this.totalAmount = totalAmount;
-	}
-
-
-
-	public String getCustomerName() {
-		return customerName;
-	}
-
-
-
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
-	}
-
-
-
-	public Integer getTableNumber() {
-		return tableNumber;
-	}
-
-
-
-	public void setTableNumber(Integer tableNumber) {
-		this.tableNumber = tableNumber;
-	}
-
-
-
-	public String getEmployeeName() {
-		return employeeName;
-	}
-
-
-
-	public void setEmployeeName(String employeeName) {
-		this.employeeName = employeeName;
-	}
-
-
+	
 
 	public String getPaymentMethod() {
 		return paymentMethod;
 	}
-
-
 
 	public void setPaymentMethod(String paymentMethod) {
 		this.paymentMethod = paymentMethod;
@@ -159,19 +84,28 @@ public class Bill {
 
 
 
-	public String getNotes() {
-		return notes;
+	public Double getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setTotalAmount(Double totalAmount) {
+		this.totalAmount = totalAmount;
 	}
 
 
 
-	public void setNotes(String notes) {
-		this.notes = notes;
+	public LocalDateTime getCreatedBy() {
+		return createdBy;
 	}
-	
+
+	public void setCreatedBy(LocalDateTime datetime) {
+		this.createdBy = datetime;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	
-	
-	
-	
+
 }
